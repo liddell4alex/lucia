@@ -25,6 +25,8 @@ A cell can have more than one propierties
 
 ### Observations
 Article: Mycelial response to spatiotemporal nutrien heterogeneity: A volocity-jump mathematical model
+
+
 ![Myceliyum](https://ars.els-cdn.com/content/image/1-s2.0-S1754504811000870-gr2.jpg)
 
 
