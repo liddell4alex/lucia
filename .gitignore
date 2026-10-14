@@ -23,13 +23,14 @@
 *.lo
 
 # Shared objects (inc. Windows DLLs)
+.vscode/
 *.dll
 *.so
 *.so.*
 *.dylib
 
 # Executables
-/bin
+bin/
 *.exe
 *.out
 *.app
