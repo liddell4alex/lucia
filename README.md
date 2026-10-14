@@ -10,7 +10,6 @@ The model will represent the ground as an environment and simulate how mycelium 
 - Temperature
 - Nutrients available
 - Spread probability
-- And others (still thinking)
 
 ### Model
 The soil will be represented using a cellular automaton, where each cell represents a portion of the soil. Each cell has a state that can change over time according to a set of rules based on its current state and the state of its neighbors.
