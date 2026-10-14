@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define F 80
-#define C 80
+#define F 100
+#define C 100
 
 int distChevichev(int ox, int oy, int x, int y) {
     int dfil = abs(ox - x);
