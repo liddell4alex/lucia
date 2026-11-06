@@ -71,19 +71,19 @@ $$
 When the heat is applied, the temperature at various cells will change. The change in temperature at the cells within the matrix $\left(\frac{\partial T_{i,j}}{\partial t}\right)$ will be aproximated with:
 
 $$
-\frac{\partial ^2T}{\partial x^2} \approx \frac{T_{i+1,j} - 2T_{i,j} + T_{i-1,j}}{\Delta x^2}
+\frac{\partial ^2T}{\partial x^2} \approx \frac{T_{i,j+1} - 2T_{i,j} + T_{i,j-1}}{\Delta x^2}
 $$
 
 And: 
 
 $$
-\frac{\partial ^2T}{\partial y^2} \approx \frac{T_{i,j+1} - 2T_{i,j} + T_{i,j-1}}{\Delta y^2}
+\frac{\partial ^2T}{\partial y^2} \approx \frac{T_{i+1,j} - 2T_{i,j} + T_{i-1,j}}{\Delta y^2}
 $$
 
 Then substituting both approximations into the heat equation:
 
 $$
-\frac{\partial T_{i,j}}{\partial t} = \alpha\left[\frac{T_{i+1,j} - 2T_{i,j} + T_{i-1,j}}{\Delta x^2}  + \frac{T_{i,j+1} - 2T_{i,j} + T_{i,j-1}}{\Delta y^2}\right]
+\frac{\partial T_{i,j}}{\partial t} = \alpha\left[\frac{T_{i,j+1} - 2T_{i,j} + T_{i,j-1}}{\Delta x^2}  + \frac{T_{i+1,j} - 2T_{i,j} + T_{i-1,j}}{\Delta y^2}\right]
 $$
 
 The temperature changes over time, and the heat differential equation contains a derivative whith respect to time. This means that it is necessary to measure the change over time. The explicit Euler method will be used to aproximate the change in time.
@@ -103,13 +103,13 @@ $$
 Substituting:
 
 $$
-\frac{T^{n+1}_{i,j} - T^{n}_{i,j}}{\Delta t} \approx \alpha\left[\frac{T^{n}_{i+1,j} - 2T^{n}_{i,j} + T^{n}_{i-1,j}}{\Delta x^2}  + \frac{T^{n}_{i,j+1} - 2T^{n}_{i,j} + T^{n}_{i,j-1}}{\Delta y^2}\right]
+\frac{T^{n+1}_{i,j} - T^{n}_{i,j}}{\Delta t} \approx \alpha\left[\frac{T^{n}_{i,j+1} - 2T^{n}_{i,j} + T^{n}_{i,j-1}}{\Delta x^2}  + \frac{T^{n}_{i+1,j} - 2T^{n}_{i,j} + T^{n}_{i-1,j}}{\Delta y^2}\right]
 $$
 
 Solving for the approximate temperature at n+1:
 
 $$
-T^{n+1}_{i,j} \approx T^{n}_{i,j} + \Delta t\,\alpha\left[\frac{T^{n}_{i+1,j} - 2T^{n}_{i,j} + T^{n}_{i-1,j}}{\Delta x^2}  + \frac{T^{n}_{i,j+1} - 2T^{n}_{i,j} + T^{n}_{i,j-1}}{\Delta y^2}\right]
+T^{n+1}_{i,j} \approx T^{n}_{i,j} + \Delta t\,\alpha\left[\frac{T^{n}_{i,j+1} - 2T^{n}_{i,j} + T^{n}_{i,j-1}}{\Delta x^2}  + \frac{T^{n}_{i+1,j} - 2T^{n}_{i,j} + T^{n}_{i-1,j}}{\Delta y^2}\right]
 $$
 
 This will be the equation used to measure the temperature change in each cell of the matrix.
@@ -123,13 +123,13 @@ $$
 In other words, the temperature of the preceding cell and that of the edge are equal. This leads to the following in the heat equation. Originally with $T_{-1}$ and $T_{0}$, it is:
 
 $$
-\left[\frac{T_{1,j} - 2T_{0,j} + T_{-1,j}}{\Delta x^2}  + \frac{T_{i,1} - 2T_{i,0} + T_{i,-1}}{\Delta y^2}\right]
+\left[\frac{T_{i,1} - 2T_{i,0} + T_{i,-1}}{\Delta x^2}\right] \ \text{and} \ \left[\frac{T_{1,j} - 2T_{0,j} + T_{-1,j}}{\Delta y^2}\right]
 $$
 
 But because we have $T_{-1} = T_{0}$ it turns into:
 
 $$
-\left[\frac{T_{1,j} - T_{0,j}}{\Delta x^2}\right] \\ \text{and} \\ \left[\frac{T_{i,1} - T_{i,0}}{\Delta y^2}\right]
+\left[\frac{T_{i,1} - T_{i,0}}{\Delta x^2}\right] \ \text{and} \ \left[\frac{T_{1,j} - T_{0,j}}{\Delta y^2}\right]
 $$
 
 About the permanent heat source, it will be defined as:
