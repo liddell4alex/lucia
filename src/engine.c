@@ -1,6 +1,6 @@
 #include "lucia.h"
 
-void thermalChange(double **actual, double **next, int rows, int cols, double alpha, double dt, double dx, double dy);
+void thermalChange(double **actual, double **next, int rows, int cols, double alpha, double dt, double dx, double dy) {
 
     // Modificando el interior de la matriz
     for(int i = 1; i < rows-1; i++) {
