@@ -4,7 +4,7 @@
 
 int main(int argn, char* args[]) {
     // Dimensiones
-    int rows = 3, cols = 3;
+    int rows = 5, cols = 5;
    
     // Difusibidad termica (qué material es)
     double alpha = 0.1;
@@ -40,7 +40,7 @@ int main(int argn, char* args[]) {
     }
 
     // Hasta aquí tenemos la matriz de temperaturas con la fuente de calor inicializadas
-    for(int i = 0; i < 5; i++) {
+    for(int i = 0; i < 1000; i++) {
         thermalChange(actual, next, alpha, rows, cols);
         
         double **aux = actual;
@@ -48,8 +48,16 @@ int main(int argn, char* args[]) {
         next = aux;
 
         actual[sourceRow][sourceCol] = Th;
+    
+        fprintf(stdout, "Iteración: %i\n", i);
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < cols; j++) {
+                fprintf(stdout, "%f ", actual[i][j]);
+            } fprintf(stdout, "\n");
+        }
+        fprintf(stdout, "\n\n");
     }
- 
+
 
     freeMatrix(actual, rows);
     freeMatrix(next, rows);
