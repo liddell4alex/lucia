@@ -48,12 +48,12 @@ Where:
 Understanding **thermal diffusivity**.
 
 $$
-\alpha = \frac{k}{\rho\,c_p}
+\alpha = \frac{k}{ \rho \, c_p}
 $$
 
 It indicates how quickly a temperature variation spreads through a material.
 - $k$: Thermal conductivity.
-- $\rho$: Material density.
+- $$\rho$$: Material density.
 - $c_p$: Specific heat capacity (Of the aluminum in this case).
 
 ## Model
