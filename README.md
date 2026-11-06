@@ -19,7 +19,6 @@ I will use the physical phenomenon known as thermal conduction.
 ## Model
 **Static conditions:**
 - Rectangular plate of variable dimensions.
-- Plate made of aluminum.
 - Specific heat capacity.
 - Using thermal conduction.
 - Represented on a 2D grid.
@@ -31,6 +30,7 @@ I will use the physical phenomenon known as thermal conduction.
 - $T_0$: Initial plate temperature. 
 - $T_h$: Heat source temperature.
 - $P = (x_h, y_h)$: Heat source starting cell.
+- $\alpha$: Thermal diffusivity of a metal (example: silver = 113e-6)
 
 ## Matematical issues
 I will use the two-dimensional heat equation:
