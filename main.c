@@ -7,7 +7,12 @@ int main(int argn, char* args[]) {
     int rows = 5, cols = 5;
    
     // Difusibidad termica (qué material es)
-    double alpha = 0.1;
+    double alpha = 9.7e-5;
+
+    // Cambio
+    double dt = 0.1;
+    double dx = 1.0;
+    double dy = 1.0;
 
     // Temperatura inicial de la placa
     double T0 = 25.0;
@@ -41,7 +46,7 @@ int main(int argn, char* args[]) {
 
     // Hasta aquí tenemos la matriz de temperaturas con la fuente de calor inicializadas
     for(int i = 0; i < 1000; i++) {
-        thermalChange(actual, next, alpha, rows, cols);
+        thermalChange(actual, next, rows, cols, alpha, dt, dx, dy);
         
         double **aux = actual;
         actual = next;
