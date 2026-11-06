@@ -129,7 +129,7 @@ $$
 But because we have $T_{-1} = T_{0}$ it turns into:
 
 $$
-\left[\frac{T_{1,j} - T_{0,j}}{\Delta x^2}  + \frac{T_{i,1} - T_{i,0}}{\Delta y^2}\right]
+\left[\frac{T_{1,j} - T_{0,j}}{\Delta x^2}\right] \\ \text{and} \\ \left[\frac{T_{i,1} - T_{i,0}}{\Delta y^2}\right]
 $$
 
 About the permanent heat source, it will be defined as:
