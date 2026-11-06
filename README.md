@@ -2,9 +2,9 @@
 ## Modeling heat transfer in a metal plate
 
 ### Author
-**Name:** Alejandro Cons Andable
-**Affiliation:** Universidad Nacional Autónoma de México (UNAM)
-**Contact:** alexmixsep@gmail.com
+**Name:** Alejandro Cons Andable <br>
+**Affiliation:** Universidad Nacional Autónoma de México (UNAM) <br>
+**Contact:** alexmixsep@gmail.com <br>
 
 ### Objective
 The objective of this project is to model and simulate the propagation of heat in a metal plate over time.
