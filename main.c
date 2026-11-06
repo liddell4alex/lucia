@@ -41,11 +41,15 @@ int main(int argn, char* args[]) {
 
     // Hasta aquí tenemos la matriz de temperaturas con la fuente de calor inicializadas
     for(int i = 0; i < 5; i++) {
-        actual = thermalChange(actual, next, alpha, rows, cols);
-    }
+        thermalChange(actual, next, alpha, rows, cols);
+        
+        double **aux = actual;
+        actual = next;
+        next = aux;
 
-    
-     
+        actual[sourceRow][sourceCol] = Th;
+    }
+ 
 
     freeMatrix(actual, rows);
     freeMatrix(next, rows);
