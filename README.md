@@ -30,6 +30,7 @@ I will use the physical phenomenon known as thermal conduction.
 
 ### Matematical issues
 I will use the two-dimensional heat equation:
+
 $$
 \frac{\partial T}{\partial t} = \alpha\left(\frac{\partial^2T}{\partial x^2} + \frac{\partial^2T}{\partial y^2}\right)
 $$
