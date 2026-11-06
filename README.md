@@ -141,3 +141,5 @@ T_{i,j} = T_h
 $$
 
 If $T_h = 100$ C°, that value will be permanent.
+
+## Results
