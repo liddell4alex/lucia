@@ -23,10 +23,10 @@ I will use the physical phenomenon known as thermal conduction.
 - Insulated edges— meaning heat cannot escape.
 
 **Initial conditions:**
-- Plate dimensions $$Dims = (L_x, L_y)$$
-- Initial plate temperature $$T_0$$
-- Heat source temperature $$T_h$$
-- Heat source starting point $$P = (x_h, y_h)$$
+- $Dims = (L_x, L_y)$: Plate dimensions.
+- $T_0$: Initial plate temperature. 
+- $T_h$: Heat source temperature.
+- $P = (x_h, y_h)$: Heat source starting point.
 
 ### Matematical issues
 I will use the two-dimensional heat equation:
@@ -37,8 +37,9 @@ $$
 
 Where:
 - $\frac{\partial T}{\partial t}$: Change in temperature over time.
-
 - $\frac{\partial^2T}{\partial x^2}$: Spatial variation of temperature in x.
+- $\frac{\partial^2T}{\partial y^2}$: Spatial variation of temperature in y.
+- $\alpha$: Thermal diffusiviy
 
 
 Understanding **thermal diffusivity**.
