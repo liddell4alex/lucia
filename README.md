@@ -71,13 +71,13 @@ $$
 When the heat is applied, the temperature at various cells will change. The change in temperature at the cells within the matrix $\left(\frac{\partial T_{i,j}}{\partial t}\right)$ will be aproximated with:
 
 $$
-\frac{\partial ^2T}{\partial x^2} \approx \frac{T_{i,j+1} - 2T_{i,j} + T_{i,j-1}}{\Delta x^2}
+\frac{\partial ^2T_{i,j}}{\partial x^2} \approx \frac{T_{i,j+1} - 2T_{i,j} + T_{i,j-1}}{\Delta x^2}
 $$
 
 And: 
 
 $$
-\frac{\partial ^2T}{\partial y^2} \approx \frac{T_{i+1,j} - 2T_{i,j} + T_{i-1,j}}{\Delta y^2}
+\frac{\partial ^2T_{i,j}}{\partial y^2} \approx \frac{T_{i+1,j} - 2T_{i,j} + T_{i-1,j}}{\Delta y^2}
 $$
 
 Then substituting both approximations into the heat equation:
