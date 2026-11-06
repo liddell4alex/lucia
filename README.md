@@ -109,7 +109,7 @@ $$
 Solving for the approximate temperature at n+1:
 
 $$
-T^{n+1}_{i,j} \approx T^{n}_{i,j} + \Delta t\,\alpha\left[\frac{T^{n}_{i,j+1} - 2T^{n}_{i,j} + T^{n}_{i,j-1}}{\Delta x^2}  + \frac{T^{n}_{i+1,j} - 2T^{n}_{i,j} + T^{n}_{i-1,j}}{\Delta y^2}\right]
+T^{n+1}_{i,j} \approx T^{n}_{i,j} + \Delta t \ \alpha\left[\frac{T^{n}_{i,j+1} - 2T^{n}_{i,j} + T^{n}_{i,j-1}}{\Delta x^2}  + \frac{T^{n}_{i+1,j} - 2T^{n}_{i,j} + T^{n}_{i-1,j}}{\Delta y^2}\right]
 $$
 
 This will be the equation used to measure the temperature change in each cell of the matrix.
