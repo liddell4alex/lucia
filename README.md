@@ -3,7 +3,7 @@
 ## Modeling heat transfer in a metal plate
 
 ## Author
-**Name:** Alejandro Cons Andable
+**Name:** Alejandro Cons Andablo
 
 **Affiliation:** Universidad Nacional Autónoma de México (UNAM)
 
@@ -18,10 +18,9 @@ I will use the physical phenomenon known as thermal conduction.
 
 ## Model
 **Static conditions:**
-- Rectangular plate of variable dimensions.
-- Specific heat capacity.
-- Using thermal conduction.
+- Rectangular plate with variable dimensions.
 - Represented on a 2D grid.
+- $\Delta x = \Delta y = 0.01$ m equivalent to 1.0 cm
 - Isolated edges— meaning heat cannot escape.
     - Using ghost cells around the edge, which always have the same temperature as those at the edge.
 
@@ -43,7 +42,7 @@ Where:
 - $\frac{\partial T}{\partial t}$: Change in temperature over time.
 - $\frac{\partial^2T}{\partial x^2}$: Spatial variation of temperature in x.
 - $\frac{\partial^2T}{\partial y^2}$: Spatial variation of temperature in y.
-- $\alpha$: Thermal diffusiviy
+- $\alpha$: Thermal diffusivity
 
 Understanding **thermal diffusivity**.
 
@@ -57,16 +56,122 @@ It indicates how quickly a temperature variation spreads through a material.
 - $c_p$: Specific heat capacity (Of the aluminum in this case).
 
 ## Model
-The plate will be represented as a matrix of cells with values corresponding to temperatures, which will initially be uniform across the entire plate.
+Is necessary to discretize the space. For this, the space is divided into points separated by a constant distance: $\Delta x$ horizontally and $\Delta y$ vertically. The temperature will be measured at these points on the plate, which will initially all be at a uniform temperature.
+
+The above is represented by a matrix, where each cell is a point with a temperature.
 
 $$
 \begin{bmatrix}
-a_{11} & a_{12} & \cdots & a_{1n} \\
-a_{21} & a_{22} & \cdots & a_{2n} \\
+T_{11} & T_{12} & \cdots & T_{1n} \\
+T_{21} & T_{22} & \cdots & T_{2n} \\
 \vdots & \vdots & \ddots & \vdots \\
-a_{m1} & a_{m2} & \cdots & a_{mn} \\
+T_{m1} & T_{m2} & \cdots & T_{mn} \\
 \end{bmatrix}
 $$
+
+In this way, we work with discrete points. For a cell $T_{i,j}$, it has 4 neighbors:
+
+$$
+\begin{matrix}
+          & T_{i-1,j} &           \\
+T_{i,j-1} &  T_{i,j}  & T_{i,j+1} \\
+          & T_{i+1,j} &           \\
+\end{matrix}
+$$
+
+Now, to simulate the temperature distribution on the plate, it is necessary to know how the temperature at each point changes relative to its neighbors. To do this, we use spatial derivatives, which we approximate using finite differences. Spatial derivatives allow us to determine how temperatures change as we move through space.
+
+To aproximate the value of a function at a $a$, using its derivatives evaluated at a reference point $x$, we use Taylor series:
+
+$$
+f(x) \approx \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!}(x-a)^n
+$$
+
+Using the expansion of Taylor series we aproximate the value of a function at a nearby point using the derivatives at the original point. We want to expand the function T(x) horizontally. The expansion to the right is done using $x + \Delta x$ and the expansion to the left is done using $x - \Delta x$
+
+$$
+T(x + \Delta x) \approx T(x) + \frac{\partial T(x)}{\partial x}\Delta x + \frac{1}{2!}\frac{\partial ^{2}T(x)}{\partial ^2x}{\Delta x}^2 + \frac{1}{3!} \frac{\partial ^3T(x)}{\partial ^3x}{\Delta x}^3 + \cdots 
+$$
+
+<br>
+
+$$
+T(x - \Delta x) \approx T(x) - \frac{\partial T(x)}{\partial x}\Delta x + \frac{1}{2!}\frac{\partial ^{2}T(x)}{\partial ^2x}{\Delta x}^2 - \frac{1}{3!} \frac{\partial ^3T(x)}{\partial ^3x}{\Delta x}^3 + \cdots 
+$$
+
+And then we add the expresions and simplifying the expression down to the second-order derivative, since that is what is needed for the heat equation:
+
+$$
+T(x + \Delta x) + T(x - \Delta x) \approx 2T(x) + \cancel{\frac{\partial T(x)}{\partial x}\Delta x - \frac{\partial T(x)}{\partial x}\Delta x} + 2\frac{1}{2!}\frac{\partial ^{2}T(x)}{\partial ^2x}{\Delta x}^2
+$$
+
+<br>
+
+$$
+T(x + \Delta x) + T(x - \Delta x) \approx 2T(x) + \frac{\partial ^{2}T(x)}{\partial ^2x}{\Delta x}^2
+$$
+
+<br>
+
+$$
+T(x + \Delta x) - 2T(x) + T(x - \Delta x) \approx \frac{\partial ^{2}T(x)}{\partial ^2x}{\Delta x}^2
+$$
+
+<br>
+
+$$
+\frac{T(x + \Delta x) - 2T(x) + T(x - \Delta x)}{ {\Delta x}^2 } \approx \frac{\partial ^{2}T(x)}{\partial ^2x}
+$$
+
+To expand T(x) vertically is the same but with $y$. The upward expansion is done using $y + \Delta y$ and the downward expansion is done using $y - \Delta y$
+
+$$
+T(y + \Delta y) \approx T(y) + \frac{\partial T(y)}{\partial y}\Delta y + \frac{1}{2!}\frac{\partial ^{2}T(y)}{\partial ^2y}{\Delta y}^2 + \frac{1}{3!} \frac{\partial ^3T(y)}{\partial ^3y}{\Delta y}^3 + \cdots 
+$$
+
+<br>
+
+$$
+T(y - \Delta y) \approx T(y) - \frac{\partial T(y)}{\partial y}\Delta y + \frac{1}{2!}\frac{\partial ^{2}T(y)}{\partial ^2y}{\Delta y}^2 - \frac{1}{3!} \frac{\partial ^3T(y)}{\partial ^3y}{\Delta y}^3 + \cdots 
+$$
+
+The same as before, add the expansions and take up to the second-order derivative:
+
+$$
+T(y + \Delta y) + T(y - \Delta y) \approx 2T(y) + \cancel{\frac{\partial T(y)}{\partial y}\Delta y - \frac{\partial T(y)}{\partial y}\Delta y} + 2\frac{1}{2!}\frac{\partial ^{2}T(y)}{\partial ^2y}{\Delta y}^2
+$$
+
+<br>
+
+$$
+T(y + \Delta y) + T(y - \Delta y) \approx 2T(y) + \frac{\partial ^{2}T(y)}{\partial ^2y}{\Delta y}^2
+$$
+
+<br>
+
+$$
+T(y + \Delta y) - 2T(y) + T(y - \Delta y) \approx \frac{\partial ^{2}T(y)}{\partial ^2y}{\Delta y}^2
+$$
+
+<br>
+
+$$
+\frac{T(y + \Delta y) - 2T(y) + T(y - \Delta y)}{ {\Delta y}^2 } \approx \frac{\partial ^{2}T(y)}{\partial ^2y}
+$$
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+asdfasfsadf
+
 
 When the heat is applied, the temperature at various cells will change. The change in temperature at the cells within the matrix $\left(\frac{\partial T_{i,j}}{\partial t}\right)$ will be aproximated with:
 

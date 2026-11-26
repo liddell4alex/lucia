@@ -7,7 +7,7 @@ int main(int argn, char* args[]) {
     int rows = 5, cols = 5;
    
     // Difusibidad termica (qué material es)
-    double alpha = 1.2e-6;  // m²/s
+    double alpha = 97.5e-6;  // m²/s
 
     // Cambio
     double dx = 0.01;   // 1 cm
