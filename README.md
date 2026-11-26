@@ -10,7 +10,7 @@
 **Contact:** alexmixsep@gmail.com <br>
 
 ## Objective
-The objective of this project is to model and simulate the propagation of heat in a metal plate over time. The palte will be represented as a matrix with cells.
+The objective of this project is to model and simulate an adiabatic heat transfer system without a dissipation coefficient in a metal plate over time. The palte will be represented as a matrix with cells.
 
 The metal plate will have an initial temperature. An initial point of heat source will begin to warm the plate, and we will observe how the heat is distribuited throughout the plate.
 
@@ -53,9 +53,8 @@ $$
 It indicates how quickly a temperature variation spreads through a material.
 - $k$: Thermal conductivity.
 - $\text{ρ}$: Material density.
-- $c_p$: Specific heat capacity (Of the aluminum in this case).
+- $c_p$: Specific heat capacity.
 
-## Model
 Is necessary to discretize the space. For this, the space is divided into points separated by a constant distance: $\Delta x$ horizontally and $\Delta y$ vertically. The temperature will be measured at these points on the plate, which will initially all be at a uniform temperature.
 
 The above is represented by a matrix, where each cell is a point with a temperature.
@@ -120,7 +119,9 @@ $$
 <br>
 
 $$
+\boxed{
 \frac{T(x + \Delta x) - 2T(x) + T(x - \Delta x)}{ {\Delta x}^2 } \approx \frac{\partial ^{2}T(x)}{\partial ^2x}
+}
 $$
 
 To expand T(x) vertically is the same but with $y$. The upward expansion is done using $y + \Delta y$ and the downward expansion is done using $y - \Delta y$
@@ -156,21 +157,37 @@ $$
 <br>
 
 $$
+\boxed{
 \frac{T(y + \Delta y) - 2T(y) + T(y - \Delta y)}{ {\Delta y}^2 } \approx \frac{\partial ^{2}T(y)}{\partial ^2y}
+}
 $$
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+From now on, the following elements will be replaced in order to work according to the matrix:
 
+$$
+T(x,y) = T_{i,j}
+$$
 
+At $x$:
 
+$$
+T(x + \Delta x) = T_{i,j+1}
+$$
+$$
+T(x - \Delta x) = T_{i,j-1}
+$$
 
+At $y$:
 
-asdfasfsadf
+$$
+T(y + \Delta y) = T_{i+1,j}
+$$
+
+$$
+T(y - \Delta y) = T_{i-1,j}
+$$
+
+Using this procedure, we have discretized the spatial derivatives of temperature, allowing us to numerically calculate their variations in the horizontal and vertical directions. And we can continue:
 
 
 When the heat is applied, the temperature at various cells will change. The change in temperature at the cells within the matrix $\left(\frac{\partial T_{i,j}}{\partial t}\right)$ will be aproximated with:
@@ -199,11 +216,17 @@ $$
 \frac{y_{n+1} - y_{n}}{\Delta t} = f(t, y)
 $$
 
-We can modify the heat equation:
+We can replace the heat equation with the formal definition of the derivative:
+
+$$
+\frac{dx}{dy} = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
+$$
 
 $$
 \frac{\partial T_{i,j}}{\partial t} \approx \frac{T^{n+1}_{i,j} - T^{n}_{i,j}}{\Delta t}
 $$
+
+It is an approximation because computers cannot calculate infinitely small time changes.
 
 Substituting:
 
