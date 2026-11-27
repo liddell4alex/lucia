@@ -377,7 +377,7 @@ This is where it gets interesting: we can run the simulation for various metalsâ
 And with the visualizers we can get:
 
 <p align="center">
-  <img src="https://i.imgur.com/Hy5sjYH.gif" width="500">
-  <img src="https://i.imgur.com/WEEzX6u.gif" width="500">
+  <img src="https://i.imgur.com/Hy5sjYH.gif" width="350">
+  <img src="https://i.imgur.com/WEEzX6u.gif" width="350">
 </p>
 
