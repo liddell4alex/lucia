@@ -1,28 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "lucia.h"
 
 int main(int argn, char* args[]) {
 
-    if(argn != 10) {
-        fprintf(stderr, "Error: Faltan argumentos\n");
-        fprintf(stdout, "Uso: lucia <metal> <alpha> <puntos x> <puntos y> <T0> <Th> <hx> <hy> <iter>\n");
+    if(strcmp(args[1], "help") == 0) {
+        fprintf(stdout, "Uso: lucia <metal> <alpha> <puntos x> <puntos y> <T0> <Th> <hx> <hy> <iter>\n\n");
         fprintf(stdout, "Donde:\n"
-                        "- <metal> ====> Nombre del metal con el que se va a trabajar (minusculas)"
-                        "- <alpha> ====> Difusividad térmica del material en m²/s.\n"
-                        "- <puntos x> => Cantidad de puntos en x de la placa.\n"
-                        "- <puntos y> => Cantidad de puntos en y de la placa.\n"
-                        "- <T0> =======> Temperatura inicial de la placa en °C.\n"
-                        "- <Th> =======> Temperatura de la fuente en °C.\n"
-                        "- <hx> =======> Punto de aplicación de la fuente en la placa en °C.\n"
-                        "- <hy> =======> Punto de aplicación de la fuente en la placa en °C.\n"
-                        "- <iter> =====> Número de iteraciones.\n\n"
+                        "   - <metal> ====> Nombre del metal con el que se va a trabajar (minusculas)"
+                        "   - <alpha> ====> Difusividad térmica del material en m²/s.\n"
+                        "   - <puntos x> => Cantidad de puntos en x de la placa.\n"
+                        "   - <puntos y> => Cantidad de puntos en y de la placa.\n"
+                        "   - <T0> =======> Temperatura inicial de la placa en °C.\n"
+                        "   - <Th> =======> Temperatura de la fuente en °C.\n"
+                        "   - <hx> =======> Punto de aplicación de la fuente en la placa en °C.\n"
+                        "   - <hy> =======> Punto de aplicación de la fuente en la placa en °C.\n"
+                        "   - <iter> =====> Número de iteraciones.\n\n"
 
                         "La cantidad de puntos en x y y también influye en las dimensiones de la placa,"
                         " la distancia entre cada punto vertical y horizontalmente es 0.01 metros. Si se"
                         " determina que en x hay 100 puntos la placa medirá 1.0 metros de ancho.\n\n"
                         
+                        "Ejemplo: lucia aluminio 97.5e-6 5 5 100.0 -10.0 2 2 15\n"); 
+        return 0;
+
+    } else if(argn != 10) {
+        fprintf(stderr, "Error: Faltan argumentos\n");
+        fprintf(stdout, "Ayuda: lucia help\n\n");
+
+        fprintf(stdout, "Uso: lucia <metal> <alpha> <puntos x> <puntos y> <T0> <Th> <hx> <hy> <iter>\n"
                         "Ejemplo: lucia aluminio 97.5e-6 5 5 100.0 -10.0 2 2 15\n"); 
         return 1;
     }

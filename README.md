@@ -272,4 +272,12 @@ If $T_h = 100$ C°, that value will be permanent.
 
 ## Use
 
-First 
+First to clone and compile:
+
+```
+git clone https://github.com/liddell4alex/lucia.git
+cd lucia
+make
+```
+
+Then 
