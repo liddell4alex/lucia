@@ -313,7 +313,7 @@ The following image shows the thermal diffusivity of some metals:
 <div align="center">
   <img src="https://www.nuclear-power.com/wp-content/uploads/2017/10/thermal-diffusivity-of-various-materials.png" alt="Thermal diffusivity of some metals" width="300">
   <p>
-    <em>Fuente: <a href="https://www.nuclear-power.com/nuclear-engineering/heat-transfer/thermal-conduction/heat-conduction-equation/thermal-diffusivity/">www.nuclear-power.com</a></em>
+    <em>Source: <a href="https://www.nuclear-power.com/nuclear-engineering/heat-transfer/thermal-conduction/heat-conduction-equation/thermal-diffusivity/">www.nuclear-power.com</a></em>
   </p>
 </div>
 
