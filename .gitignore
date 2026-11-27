@@ -33,7 +33,7 @@ simulations/*
 *.dylib
 
 # Executables
-bin/
+build/
 *.exe
 *.out
 *.app
