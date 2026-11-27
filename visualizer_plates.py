@@ -145,7 +145,7 @@ plt.subplots_adjust(
     bottom=0.30,
     top=0.88,
     hspace=0.95,
-    wspace=0.01
+    wspace=0.20
 )
 
 images = []
@@ -195,7 +195,7 @@ for index, material in enumerate(materials):
     # Información debajo de cada placa
     info = ax.text(
         0.5,
-        -0.30,
+        -0.18,
         "",
         transform=ax.transAxes,
         ha="center",
