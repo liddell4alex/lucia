@@ -277,7 +277,107 @@ First to clone and compile:
 ```
 git clone https://github.com/liddell4alex/lucia.git
 cd lucia
+mkdir -p simulations
 make
 ```
 
-Then 
+Then the executable will be in the `build/` directory. To run it use `./build/lucia ...`. If executed from within the `build` directory or another, it will result in an error because the `simulations` directory is not located there; furthermore, even if a `simulations` directory were created in that location, the visualizers look for it in the project's root folder.
+
+```
+./build/lucia help
+```
+
+To show the usage of the program:
+
+```
+Uso: lucia <metal> <alpha> <puntos x> <puntos y> <T0> <Th> <hx> <hy> <iter>
+Donde:
+    - <metal> ====> Nombre del metal con el que se va a trabajar (minusculas)
+    - <alpha> ====> Difusividad térmica del material en m²/s.
+    - <puntos x> => Cantidad de puntos en x de la placa.
+    - <puntos y> => Cantidad de puntos en y de la placa.
+    - <T0> =======> Temperatura inicial de la placa en °C.
+    - <Th> =======> Temperatura de la fuente en °C.
+    - <hx> =======> Punto de aplicación de la fuente en la placa en °C.
+    - <hy> =======> Punto de aplicación de la fuente en la placa en °C.
+    - <iter> =====> Número de iteraciones.
+
+La cantidad de puntos en x y y también influye en las dimensiones de la placa, la distancia entre cada punto vertical y horizontalmente es 0.01 metros. Si se determina que en x hay 100 puntos la placa medirá 1.0 metros de ancho.
+                        
+Ejemplo: lucia silver 149e-6 5 5 25.0 200.0 0 3 200
+```
+As the help section states, to use it you must provide the 9 specified arguments, which serve as the initial conditions for the simulation.
+
+The following image shows the thermal diffusivity of some metals:
+
+<div align="center">
+  <img src="https://www.nuclear-power.com/wp-content/uploads/2017/10/thermal-diffusivity-of-various-materials.png" alt="Thermal diffusivity of some metals" width="300">
+  <p>
+    <em>Fuente: <a href="https://www.nuclear-power.com/nuclear-engineering/heat-transfer/thermal-conduction/heat-conduction-equation/thermal-diffusivity/">www.nuclear-power.com</a></em>
+  </p>
+</div>
+
+There are a few things to keep in mind:
+
+- The directory `simulations` is needed to save the csv output files for the visualizer. The output files are stored as follows: `<metal>.csv`.
+- The first argument specifies the name of the file where the results of this simulation will be saved. If you run two simulations using the same name, any existing file with that name will be overwritten by the new results.
+- Thermal diffusivity must be entered in units of m²/s.
+- The distance between each point is 0.01 meters. This means that if we specify 10 points along the x-axis, the plate will have a width of 0.1 meters—that is, 10 cm.
+- The temperature source point is a coordinate within the set of points; that is, the values ​​assigned cannot exceed the total number of points available for each axis.
+- The change in time is 0.1 seconds, so if we specify 10 iterations, the simulation will represent the passage of 1 second in time.
+- The source can be at a negative temperature.
+
+## Examples of usage and visualization of results
+
+First testing with a silver plate:
+
+```
+./build/lucia silver 149e-6 5 5 25.0 200.0 0 3 200
+```
+
+When the execution finishes, the results will be saved in the `silver.csv` file in the `simulations` directory.
+
+There are two visualizers for displaying the results: one shows heat transfer between points on the plate, and it runs as follows:
+
+```
+python visualizer_plates.py
+```
+
+And it shows
+
+<div align="center">
+  <img src="https://i.imgur.com/KIId6f7.gif" alt="Visualizing the spread of heat through the silver plate over time" width="500">
+</div>
+<br>
+
+The other visualizer is used to observe changes in the plate's average temperature over time in two ways: one graph shows the relationship between temperature and time, while the other graph illustrates how the plate's average temperature increases. It runs as follos:
+
+```
+python visualizer_compare.py
+```
+
+And it shows
+
+<div align="center">
+  <img src="https://i.imgur.com/XXIfcCY.gif" alt="Visualizing the change in average temperature over time" width="500">
+</div>
+<br>
+
+From now on, the visualizations will be displayed without showing the execution command, as it is exactly the same.
+
+This is where it gets interesting: we can run the simulation for various metals—ideally with the same specifications for the plate—and compare the changes over time. For example, for silver, gold, aluminum, and iron:
+
+```
+./build/lucia silver 149e-6 5 5 25.0 200.0 0 3 200
+./build/lucia gold 127e-6 5 5 25.0 200.0 0 3 200
+./build/lucia aluminum 97.5e-6 5 5 25.0 200.0 0 3 200
+./build/lucia iron 22.8e-6 5 5 25.0 200.0 0 3 200
+```
+
+And with the visualizers we can get:
+
+<p align="center">
+  <img src="https://i.imgur.com/Hy5sjYH.gif" width="500">
+  <img src="https://i.imgur.com/WEEzX6u.gif" width="500">
+</p>
+

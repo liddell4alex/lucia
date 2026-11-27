@@ -195,7 +195,7 @@ for index, material in enumerate(materials):
     # Información debajo de cada placa
     info = ax.text(
         0.5,
-        -0.32,
+        -0.30,
         "",
         transform=ax.transAxes,
         ha="center",

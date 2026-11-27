@@ -23,7 +23,7 @@ int main(int argn, char* args[]) {
                         " la distancia entre cada punto vertical y horizontalmente es 0.01 metros. Si se"
                         " determina que en x hay 100 puntos la placa medirá 1.0 metros de ancho.\n\n"
                         
-                        "Ejemplo: lucia aluminio 97.5e-6 5 5 100.0 -10.0 2 2 15\n"); 
+                        "Ejemplo: lucia silver 149e-6 5 5 25.0 200.0 0 3 200\n");
         return 0;
 
     } else if(argn != 10) {
@@ -31,7 +31,7 @@ int main(int argn, char* args[]) {
         fprintf(stdout, "Ayuda: lucia help\n\n");
 
         fprintf(stdout, "Uso: lucia <metal> <alpha> <puntos x> <puntos y> <T0> <Th> <hx> <hy> <iter>\n"
-                        "Ejemplo: lucia aluminio 97.5e-6 5 5 100.0 -10.0 2 2 15\n"); 
+                        "Ejemplo: lucia silver 149e-6 5 5 25.0 200.0 0 3 200\n");
         return 1;
     }
 
@@ -85,7 +85,7 @@ int main(int argn, char* args[]) {
     FILE *test = fopen("simulations/test.tmp", "w");
 
     if(test == NULL) {
-        fprintf(stderr, "Error: El directorio 'simulations' no existe o no tiene permisos de escritura"
+        fprintf(stderr, "Error: El directorio 'simulations' no existe o no tiene permisos de escritura\n"
                         "Es necesario crear el directorio 'simulations' con permisos de escritura.\n");
 
         freeMatrix(actual, rows);
